@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+    sistema:
+        container_name: zezao
+        hostname: zezinho
+        image: nginx
+        volumes:
+            - ./arquivos:/usr/share/nginx/html
+        networks: 
+            - default
+        ports:
+            - 7777:80
+    bd:
+        container_name: banco
+        hostname: bd
+        volumes:
+            - ./dados:/var/lib/mysql
+        image: mysql
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: true
+            MYSQL_DATABASE: BDRedes
+            MYSQL_USER: mxdb
+            MYSQL_PASSWORD: mxdb
+        networks: 
+            - default
+        ports: 
+            - 3307:3306
+networks: 
+    default:
